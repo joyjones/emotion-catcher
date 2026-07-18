@@ -87,13 +87,15 @@
     </section>
 
     <section id="orchard-screen" class="screen orchard-screen is-hidden">
-      <header class="orchard-topbar"><button id="orchard-home" class="icon-button" type="button" aria-label="回到首页">←</button><div><p class="overline">成长记录</p><h1>我的沟通果园</h1></div><span id="orchard-summary">0 / 38</span></header>
+      <header class="orchard-topbar"><button id="orchard-home" class="icon-button" type="button" aria-label="回到首页">←</button><div><p class="overline">成长记录</p><h1>我的沟通果园</h1></div><div class="orchard-actions"><span id="orchard-summary">0 / 38</span><button id="clear-progress" type="button">清除记录</button></div></header>
       <section class="orchard-intro"><div><h2>每一次真正认出，<br>都会让果子长大一点。</h2><p>灰色代表尚未遇见；点亮后继续在不同情境中答对，果子会逐渐成熟。</p></div><div class="maturity-legend"><span><i class="s0"></i>未遇见</span><span><i class="s1"></i>认识</span><span><i class="s2"></i>成长</span><span><i class="s3"></i>成熟</span></div></section>
       <div id="orchard-map" class="orchard-map"></div>
+      <section class="history-section"><div class="history-heading"><div><p class="overline">浏览器本地记录</p><h2>最近训练</h2></div><span>最多保留 20 局</span></div><div id="history-list" class="history-list"></div></section>
       <div id="concept-drawer" class="concept-drawer is-hidden"><button id="close-concept" type="button">×</button><span id="concept-tree-name"></span><h3 id="concept-name"></h3><p id="concept-definition"></p><div id="concept-progress"></div></div>
       <div id="settlement-layer" class="settlement-layer is-hidden" role="dialog" aria-modal="true" aria-labelledby="settlement-title">
         <article class="settlement-card"><span class="settlement-badge">本局结算</span><h2 id="settlement-title">果园有了新变化</h2><p id="settlement-copy"></p><div class="settlement-stats"><div><b id="settle-correct">0</b><span>答对</span></div><div><b id="settle-new">0</b><span>新果子</span></div><div><b id="settle-grown">0</b><span>长大了</span></div></div><div id="settle-fruits" class="settle-fruits"></div><div class="settlement-actions"><button id="play-again" type="button">再练一局</button><button id="stay-orchard" type="button">逛逛果园</button></div></article>
       </div>
+      <div id="reset-layer" class="reset-layer is-hidden" role="dialog" aria-modal="true" aria-labelledby="reset-title"><article class="reset-card"><span>清除本机数据</span><h2 id="reset-title">确定清空这座果园吗？</h2><p>所有果实、熟练度和训练历史都会从当前浏览器删除，且无法恢复。</p><div><button id="cancel-reset" type="button">取消</button><button id="confirm-reset" type="button">确认清除</button></div></article></div>
     </section>
   </main>
   <script src="data.js"></script>
