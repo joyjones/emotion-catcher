@@ -1,84 +1,102 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#17141f" />
-    <meta name="description" content="在 20 秒内，为 NPC 的心事命名。" />
-    <title>情绪捕手 · 20 秒心事辨认</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main class="app-shell">
-      <section id="start-screen" class="screen start-screen" aria-labelledby="game-title">
-        <div class="ambient ambient-one"></div>
-        <div class="ambient ambient-two"></div>
-        <div class="eyebrow">EMOTION CATCHER · 01</div>
-        <p class="kicker">20 秒，给一个说不出口的心事命名</p>
-        <h1 id="game-title">情绪捕手</h1>
-        <p class="intro">NPC「零」会告诉你一段短短的心事。<br />请用一个最贴切的感受词，接住它。</p>
-        <div class="rule-card">
-          <span class="rule-number">20</span>
-          <span>秒内作答<br /><small>答错或超时都会揭晓答案</small></span>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#f7f3e8" />
+  <meta name="description" content="像背单词一样，练习看懂情绪与弦外之音。" />
+  <title>情商超人 · 沟通反应训练器</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section id="home-screen" class="screen home-screen">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="情商超人首页"><span class="brand-mark">情</span><span>情商超人<small>沟通反应训练器</small></span></a>
+        <button id="open-orchard" class="nav-orchard" type="button"><span>我的果园</span><b id="home-fruit-count">0</b></button>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="overline">每天 3 分钟 · 把表达练成反应</p>
+          <h1>听懂一句话，<br><em>接住一个人。</em></h1>
+          <p>短情境、短回答、即时反馈。每次练习，都会让你的沟通果园多亮起一颗果子。</p>
+          <div class="hero-stats">
+            <div><b id="stat-discovered">0</b><span>已认识概念</span></div>
+            <div><b id="stat-ripe">0</b><span>成熟果实</span></div>
+            <div><b id="stat-rounds">0</b><span>完成训练</span></div>
+          </div>
         </div>
-        <button id="start-button" class="primary-button" type="button">开始这一局 <span>→</span></button>
-        <p class="subtle">10 题一局 · 没有标准的人生，只有更准确的表达</p>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="sun"></div><div class="cloud cloud-a"></div><div class="cloud cloud-b"></div>
+          <div class="mini-tree"><i></i><span class="mini-fruit f1"></span><span class="mini-fruit f2"></span><span class="mini-fruit f3"></span></div>
+          <div class="hero-person">情<span>＋</span></div>
+        </div>
       </section>
 
-      <section id="game-screen" class="screen game-screen is-hidden" aria-live="polite">
-        <header class="game-header">
-          <button id="quit-button" class="text-button" type="button">结束本局</button>
-          <div class="progress-label"><span id="question-current">01</span> / <span id="question-total">10</span></div>
-        </header>
-
-        <div class="progress-track" aria-label="答题进度"><div id="progress-bar" class="progress-bar"></div></div>
-
-        <section class="npc-card">
-          <div class="npc-intro">
-            <div class="npc-avatar" aria-hidden="true">零</div>
-            <div><p class="npc-name">NPC · 零</p><p id="npc-status" class="npc-status">正在回想一件事</p></div>
-            <div id="timer-ring" class="timer-ring" aria-label="剩余 20 秒"><span id="timer-number">20</span></div>
-          </div>
-          <blockquote id="scene-text" class="scene-text"></blockquote>
-        </section>
-
-        <section class="answer-area" aria-label="输入感受词">
-          <label for="answer-input">此刻，零更像是……</label>
-          <div class="answer-row">
-            <input id="answer-input" type="text" inputmode="text" maxlength="12" autocomplete="off" placeholder="输入一个感受词" />
-            <button id="submit-button" class="submit-button" type="button">判断</button>
-          </div>
-          <p id="input-hint" class="input-hint">例如：委屈、释然、窘迫、忐忑</p>
-        </section>
-
-        <div id="feedback-layer" class="feedback-layer is-hidden" role="dialog" aria-modal="true" aria-labelledby="feedback-title">
-          <article id="feedback-card" class="feedback-card">
-            <div id="feedback-icon" class="feedback-icon">✓</div>
-            <p id="feedback-result" class="feedback-result">你接住了这份心事</p>
-            <h2 id="feedback-title">准确答案：<span id="correct-answer"></span></h2>
-            <p id="feedback-copy" class="feedback-copy"></p>
-            <div class="feedback-bottom"><span id="score-change"></span><span id="next-countdown">3 秒后下一题</span></div>
+      <section class="training-section">
+        <div class="section-heading"><div><p class="overline">自由训练</p><h2>今天想练什么？</h2></div><span>两个玩法全部开放</span></div>
+        <div class="mode-grid">
+          <article class="mode-card feeling-card">
+            <div class="mode-number">01</div><div class="mode-icon">心</div>
+            <div class="mode-copy"><span class="mode-tag">看懂自己</span><h3>识别感受</h3><p>从一个短片段中，找到最准确的感受词。</p></div>
+            <div class="mode-meta"><span>30 道情境</span><span>8 题一局</span><span>20 秒</span></div>
+            <button class="mode-start" data-mode="feeling" type="button">开始训练 <span>→</span></button>
+          </article>
+          <article class="mode-card subtext-card">
+            <div class="mode-number">02</div><div class="mode-icon">言</div>
+            <div class="mode-copy"><span class="mode-tag">看懂别人</span><h3>弦外之音</h3><p>听懂一句话背后，没有直接说出的需要。</p></div>
+            <div class="mode-meta"><span>24 道对话</span><span>8 题一局</span><span>20 秒</span></div>
+            <button class="mode-start" data-mode="subtext" type="button">开始训练 <span>→</span></button>
           </article>
         </div>
       </section>
+      <footer class="home-footer">不是心理诊断，而是一场关于词汇、理解与表达的日常训练。</footer>
+    </section>
 
-      <section id="result-screen" class="screen result-screen is-hidden" aria-labelledby="result-title">
-        <div class="eyebrow">一局结束</div>
-        <p class="kicker">你已经为十个难以言说的瞬间找过名字</p>
-        <h1 id="result-title">这一次，你接住了<br /><span id="correct-count">0</span> 份心事</h1>
-        <div class="result-grid">
-          <div><span id="final-score">0</span><small>总分</small></div>
-          <div><span id="best-streak">0</span><small>最长连胜</small></div>
-          <div><span id="near-count">0</span><small>差一点答中</small></div>
-        </div>
-        <div id="reflection-card" class="reflection-card"></div>
-        <button id="restart-button" class="primary-button" type="button">再接一局 <span>↻</span></button>
-        <button id="home-button" class="text-button home-button" type="button">回到首页</button>
+    <section id="game-screen" class="screen game-screen is-hidden" aria-live="polite">
+      <header class="game-topbar">
+        <button id="quit-game" class="icon-button" type="button" aria-label="结束本局">×</button>
+        <div class="game-mode"><span id="game-mode-index">01</span><div><b id="game-mode-name">识别感受</b><small id="game-mode-goal">为这一刻找到名字</small></div></div>
+        <div class="question-count"><b id="question-current">1</b><span>/</span><span id="question-total">8</span></div>
+      </header>
+      <div class="progress-track"><div id="progress-bar"></div></div>
+      <section class="question-stage">
+        <div class="npc-line"><div class="npc-avatar">零</div><div><b>NPC · 零</b><span id="npc-status">想请你听一件事</span></div><div id="timer" class="timer">20</div></div>
+        <div id="context-label" class="context-label"></div>
+        <blockquote id="scene-text"></blockquote>
+        <p id="question-prompt" class="question-prompt"></p>
       </section>
-    </main>
-    <script src="app.js"></script>
-  </body>
+      <section class="answer-panel">
+        <label id="answer-label" for="answer-input">你的答案</label>
+        <div class="answer-row"><input id="answer-input" maxlength="40" autocomplete="off" placeholder="输入一个词" /><button id="submit-answer" type="button">判断</button></div>
+        <p id="answer-hint">不用写得完美，先说出你真正听见的。</p>
+      </section>
+      <div id="feedback-layer" class="feedback-layer is-hidden" role="dialog" aria-modal="true" aria-labelledby="feedback-title">
+        <article id="feedback-card" class="feedback-card">
+          <div class="feedback-top"><span id="feedback-icon">✓</span><p id="feedback-kicker">你接住了</p></div>
+          <h2 id="feedback-title"><span id="feedback-target"></span></h2>
+          <p id="feedback-reference" class="feedback-reference"></p>
+          <p id="feedback-explanation"></p>
+          <div class="feedback-actions"><span id="feedback-score"></span><button id="next-question" type="button">下一题 →</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="orchard-screen" class="screen orchard-screen is-hidden">
+      <header class="orchard-topbar"><button id="orchard-home" class="icon-button" type="button" aria-label="回到首页">←</button><div><p class="overline">成长记录</p><h1>我的沟通果园</h1></div><span id="orchard-summary">0 / 38</span></header>
+      <section class="orchard-intro"><div><h2>每一次真正认出，<br>都会让果子长大一点。</h2><p>灰色代表尚未遇见；点亮后继续在不同情境中答对，果子会逐渐成熟。</p></div><div class="maturity-legend"><span><i class="s0"></i>未遇见</span><span><i class="s1"></i>认识</span><span><i class="s2"></i>成长</span><span><i class="s3"></i>成熟</span></div></section>
+      <div id="orchard-map" class="orchard-map"></div>
+      <div id="concept-drawer" class="concept-drawer is-hidden"><button id="close-concept" type="button">×</button><span id="concept-tree-name"></span><h3 id="concept-name"></h3><p id="concept-definition"></p><div id="concept-progress"></div></div>
+      <div id="settlement-layer" class="settlement-layer is-hidden" role="dialog" aria-modal="true" aria-labelledby="settlement-title">
+        <article class="settlement-card"><span class="settlement-badge">本局结算</span><h2 id="settlement-title">果园有了新变化</h2><p id="settlement-copy"></p><div class="settlement-stats"><div><b id="settle-correct">0</b><span>答对</span></div><div><b id="settle-new">0</b><span>新果子</span></div><div><b id="settle-grown">0</b><span>长大了</span></div></div><div id="settle-fruits" class="settle-fruits"></div><div class="settlement-actions"><button id="play-again" type="button">再练一局</button><button id="stay-orchard" type="button">逛逛果园</button></div></article>
+      </div>
+    </section>
+  </main>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
 </html>
