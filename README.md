@@ -39,3 +39,11 @@ python3 -m http.server 4173
 本地数据使用固定存储键 `eq-superman-mvp-v1`，数据内部带有 `schemaVersion`、`anonymousId`、创建/更新时间和同步时间。正常网页版本更新不会删除该键。
 
 未来登录后可以调用 `window.EQSupermanStorage.exportForAccount()` 读取完整本地进度，上传并合并到账号；服务端确认成功后调用 `markSynced()` 标记同步，不应在确认前删除本地副本。现有无版本数据会在读取时自动迁移到版本 2。
+
+## 本地埋点
+
+当前没有后台，埋点先保存在用户浏览器 `localStorage` 的 `eq-superman-analytics-v1` 中，最多保留最近 1200 条事件。事件包含匿名 ID、会话 ID、环境、路径、时间和事件参数。
+
+已记录的核心事件包括：访问、页面切换、按钮点击、开始训练、题目展示、答题提交、正确/错误/超时、概念成长、反馈弹窗、结算、果园查看、概念查看、清除记录。题目事件会记录题号、玩法、概念、目标答案、用户输入、判定结果和响应时间。
+
+未来接后台时可以调用 `window.EQSupermanAnalytics.export()` 读取完整本地埋点并上传；上传成功后调用 `window.EQSupermanAnalytics.markUploaded()` 标记同步时间。
