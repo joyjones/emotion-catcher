@@ -13,11 +13,19 @@ This project has two public environments:
 ## Release Flow
 
 1. Do development work on `staging` or a feature branch based on `staging`.
-2. Push the tested state to the staging Pages site.
+2. Push the tested state to the staging Pages site:
+   ```bash
+   ./scripts/publish-staging.sh
+   ```
 3. Verify the staging URL in a browser.
 4. Only after staging is accepted, merge `staging` into `main`.
 5. Push `main` to update production.
 6. Tag meaningful production releases with semantic versions.
+
+## Remotes
+
+- `origin`: production repository, with `main` for production and `staging` for pre-release code.
+- `staging-pages`: separate repository that serves the staging Pages site from its `main` branch.
 
 ## Current Baseline
 
