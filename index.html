@@ -39,6 +39,10 @@
 
       <section class="training-section">
         <div class="section-heading"><div><p class="overline">自由训练</p><h2>今天想练什么？</h2></div><span>两个玩法全部开放</span></div>
+        <label class="image-test-toggle" for="image-priority-toggle">
+          <input id="image-priority-toggle" type="checkbox" />
+          <span><b>优先测试有图题</b><small>开启后，有插图的题会优先进入本局并排在前面。</small></span>
+        </label>
         <div class="mode-grid">
           <article class="mode-card feeling-card">
             <div class="mode-number">01</div><div class="mode-icon">心</div>
@@ -64,11 +68,17 @@
         <div class="question-count"><b id="question-current">1</b><span>/</span><span id="question-total">8</span></div>
       </header>
       <div class="progress-track"><div id="progress-bar"></div></div>
-      <section class="question-stage">
+      <section id="question-stage" class="question-stage">
         <div class="npc-line"><div class="npc-avatar">零</div><div><b>NPC · 零</b><span id="npc-status">想请你听一件事</span></div><div id="timer" class="timer">20</div></div>
-        <div id="context-label" class="context-label"></div>
-        <blockquote id="scene-text"></blockquote>
-        <p id="question-prompt" class="question-prompt"></p>
+        <div id="question-visual" class="question-visual">
+          <img id="question-image" alt="" />
+          <div class="question-image-shade"></div>
+          <div class="question-copy">
+            <div id="context-label" class="context-label"></div>
+            <blockquote id="scene-text"></blockquote>
+            <p id="question-prompt" class="question-prompt"></p>
+          </div>
+        </div>
       </section>
       <section class="answer-panel">
         <label id="answer-label" for="answer-input">你的答案</label>
