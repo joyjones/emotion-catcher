@@ -22,3 +22,4 @@
 @media(prefers-reduced-motion:reduce){.fruit.change-new,.fruit.change-grown,.fruit.change-new::after,.fruit.change-grown::after{animation:none}}
 .question-visual.image-revealed img{filter:blur(0) brightness(1);transform:scale(1)}
 .question-visual.image-revealed .question-image-shade{background:linear-gradient(180deg,rgba(20,30,26,.14),rgba(20,30,26,.28))}
+.creator-mode .answer-row input,.creator-mode .answer-row button{opacity:.72}.creator-mode .answer-row input{background:#f8f4e8;color:#7b827d}.creator-mode .answer-panel>p{color:#a56b42;font-weight:700}.creator-mode .timer{border-color:#e9b46b;color:#9a6833}.creator-mode .timer.urgent{border-color:#ee8a4b;color:#c35b35}
